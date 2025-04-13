@@ -97,6 +97,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center"
+        android:onClick="submit"
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
         android:text="@string/btnSubmit"

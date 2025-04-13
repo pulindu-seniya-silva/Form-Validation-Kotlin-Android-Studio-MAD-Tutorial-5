@@ -11,6 +11,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.myapplicatiotest.models.FormData
+import com.example.myapplicatiotest.models.validations.validationResult
 
 class MainActivity : AppCompatActivity() {
 
@@ -52,8 +54,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun submit(v: View) {
+        val myForm = FormData(
+            edtStudentId.text.toString(),
+            spnYear.selectedItem.toString(),
+            spnSemester.selectedItem.toString(),
+            cbAgree.isChecked
+        )
 
+        val studentIdValidation = myForm.validateStudentId()
+        val spnYearValidation = myForm.validateYear()
+        val spnSemesterValidation = myForm.validateSemester()
+        val cbAgreeValidation = myForm.validateAgreement()
     }
+
 
 
 
