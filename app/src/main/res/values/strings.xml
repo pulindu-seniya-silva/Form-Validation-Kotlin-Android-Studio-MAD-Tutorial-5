@@ -11,7 +11,7 @@
 
 
     <string-array name="years">
-        <item>Select</item>
+        <item></item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -20,7 +20,7 @@
 
 
     <string-array name="semesters">
-        <item>Select</item>
+        <item></item>
         <item>Semester 1</item>
         <item>Semester 2</item>
     </string-array>
