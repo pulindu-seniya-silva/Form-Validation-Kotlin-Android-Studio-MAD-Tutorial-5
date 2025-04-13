@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -44,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         var builder = AlertDialog.Builder(this)
         builder.setTitle(title)
         builder.setMessage(message)
-        builder.setPositiveButton("OK") {dialog, which ->
+        builder.setPositiveButton("OK") { dialog, which ->
 
         }
 
@@ -65,9 +66,76 @@ class MainActivity : AppCompatActivity() {
         val spnYearValidation = myForm.validateYear()
         val spnSemesterValidation = myForm.validateSemester()
         val cbAgreeValidation = myForm.validateAgreement()
+
+        when (studentIdValidation) {
+
+            validationResult.Valid -> {
+                count++
+            }
+
+            is validationResult.empty -> {
+                displayAlert("Error", studentIdValidation.errorMessage)
+            }
+
+            is validationResult.Invalid -> {
+                displayAlert("Error", studentIdValidation.errorMessage)
+            }
+        }
+
+        when (spnYearValidation) {
+
+            validationResult.Valid -> {
+                count++
+            }
+
+            is validationResult.empty -> {
+                val tv: TextView = spnYear.selectedView as TextView
+                tv.error = ""
+                tv.text = spnYearValidation.errorMessage
+            }
+
+            is validationResult.Invalid -> {
+
+            }
+
+        }
+
+        when (spnSemesterValidation) {
+
+            validationResult.Valid -> {
+                count++
+            }
+
+            is validationResult.empty -> {
+                val tv: TextView = spnSemester.selectedView as TextView
+                tv.error = ""
+                tv.text = spnSemesterValidation.errorMessage
+            }
+
+            is validationResult.Invalid -> {
+                displayAlert("Error", spnSemesterValidation.errorMessage)
+            }
+        }
+        when (cbAgreeValidation) {
+
+            validationResult.Valid -> {
+                count++
+            }
+
+            is validationResult.Invalid -> {
+                displayAlert("Error", cbAgreeValidation.errorMessage)
+            }
+
+            is validationResult.empty -> {
+                displayAlert("Error", cbAgreeValidation.errorMessage)
+            }
+        }
+
+        if (count == 4) {
+            displayAlert("Success", "Form submitted successfully")
+            count = 0
+        } else {
+            displayAlert("Error", "Form not submitted")
+        }
     }
-
-
-
-
 }
