@@ -133,9 +133,9 @@ class MainActivity : AppCompatActivity() {
 
         if (count == 4) {
             displayAlert("Success", "Form submitted successfully")
-            count = 0
+
         } else {
-            displayAlert("Error", "Form not submitted")
+            count = 0
         }
     }
 }
